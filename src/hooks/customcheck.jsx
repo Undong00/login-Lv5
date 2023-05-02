@@ -8,12 +8,12 @@ function useTodos() {
     error,
     data: todos,
   } = useQuery("todos", async () => {
-    const response = await axios.get("http://localhost:4000/todos");
+    const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}`);
     return response.data;
   });
 
   const deleteTodo = useMutation(
-    (id) => axios.delete(`http://localhost:4000/todos/${id}`),
+    (id) => axios.delete(`${process.env.REACT_APP_SERVER_URL}/${id}`),
     {
       onSuccess: () => {
         refetch();

@@ -27,10 +27,10 @@ export const patchData = async (id, edit) => {
 };
 
 export const fetchData = async () => {
-  const response = await axios.get("http://localhost:4000/todos");
+  const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}`);
   return response.data;
 };
 
 export const deleteData = async (id) => {
-  await axios.delete(`http://localhost:4000/todos/${id}`);
+  await axios.delete(`${process.env.REACT_APP_SERVER_URL}/${id}`);
 };
