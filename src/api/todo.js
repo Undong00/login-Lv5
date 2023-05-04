@@ -1,7 +1,7 @@
 // api/todo.js
 
 import axios from "axios";
-
+import { cookie } from "../utils/cookie";
 export const addTodo = async (todo) => {
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URL}`,
@@ -33,4 +33,29 @@ export const fetchData = async () => {
 
 export const deleteData = async (id) => {
   await axios.delete(`${process.env.REACT_APP_SERVER_URL}/${id}`);
+};
+
+//
+// 매 페이지마다 확인
+export const checkAuth = async () => {
+  try {
+    // cookie.get("찾아올쿠키이름")
+    // 쿠키 꺼내기
+    const authToken = cookie.get("cookieName");
+    console.log(authToken); // 얘가 토큰
+
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL1}/user`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    console.log(response.data.message); // 인증
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+  // console.log(response);
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import StheadComponent from "../components/header";
+// import { checkAuth } from "../api/todo";
 
 function Home() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Home() {
         <StheadComponent />
       </div>
       <Stlayout>
+        <h1 onClick={() => navigate("/login")}>로그아웃</h1>
         <Stborder
           onClick={() => {
             // 미정
@@ -29,6 +31,7 @@ function Home() {
           <h1>Check</h1>
           <h2>👉 Click!</h2>
         </Stborder>
+        {/* <button onClick={checkAuth}>체크해보자</button> */}
       </Stlayout>
     </St>
   );
